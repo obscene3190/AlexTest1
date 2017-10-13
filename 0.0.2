@@ -17,13 +17,11 @@ bool massive(int array[10])
     }
     return result;
 }
-bool decrease(int array[10]) {
-    bool check = true;
+int decrease(int array[10]) {
     for(int i = 0; i < 10; i++) {
-        if (array[i] >= array[i-1]) check=true;
-        else {check=false; break;}
+        if (!(array[i] >= array[i-1])) {cout << "The input sequence must be non-decreasing."; exit(0); }
     }
-    return check;
+    return 0;
 }
 
 int main()
@@ -31,18 +29,17 @@ int main()
     int posl[10];
     int sum;
     if(massive(posl)) {
-         if (decrease(posl)) {
-             cin >> sum;
-             bool no = true;
-             for(int i; i<10; i++) {
-                 for (int j = 0; j<10; j++) {
-                     if (posl[i]+posl[j]==sum) {cout << posl[i] << " " << posl[j] << endl; no = false;}
-                 }
-             }
+        decrease(posl);
+        cin >> sum;
+        bool no = true;
+        for(int i=0; i<10; i++) {
+            for (int j = 1; j<10; j++) {
+                if ((posl[i]+posl[j] == sum) && (posl[i] != posl[j])) {cout << posl[i] << " " << posl[j] << endl; no = false; exit(0); }
+            }
+        }
              if(no) cout << "There is no such pair of numbers.";
          }
-         else cout << "The input sequence must be non-decreasing.";
-    }
+
     else {
         cout<<"An error has occurred while reading the input sequence.";
     }
