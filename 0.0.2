@@ -1,0 +1,50 @@
+#include <iostream>
+#include <string>
+#include <sstream>
+using namespace std;
+
+bool massive(int array[10])
+{
+    string string;
+    getline( cin, string );
+    istringstream stream( string );
+    bool result = true;
+    for( int i = 0; i < 10; ++i ) {
+        if ( !(stream >> array[ i ]) ) {
+            result = false;
+            break;
+        }
+    }
+    return result;
+}
+bool decrease(int array[10]) {
+    bool check = true;
+    for(int i = 0; i < 10; i++) {
+        if (array[i] >= array[i-1]) check=true;
+        else {check=false; break;}
+    }
+    return check;
+}
+
+int main()
+{
+    int posl[10];
+    int sum;
+    if(massive(posl)) {
+         if (decrease(posl)) {
+             cin >> sum;
+             bool no = true;
+             for(int i; i<10; i++) {
+                 for (int j = 0; j<10; j++) {
+                     if (posl[i]+posl[j]==sum) {cout << posl[i] << " " << posl[j] << endl; no = false;}
+                 }
+             }
+             if(no) cout << "There is no such pair of numbers.";
+         }
+         else cout << "The input sequence must be non-decreasing.";
+    }
+    else {
+        cout<<"An error has occurred while reading the input sequence.";
+    }
+
+}
