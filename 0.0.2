@@ -35,10 +35,10 @@ int main()
         for(int i=0; i<10; i++) {
             for (int j = 1; j<10; j++) {
                 if ((posl[i]+posl[j] == sum) && (posl[i] != posl[j])) {cout << posl[i] << " " << posl[j] << endl; no = false; exit(0); }
+                }
             }
+        if(no) cout << "There is no such pair of numbers.";
         }
-             if(no) cout << "There is no such pair of numbers.";
-         }
 
     else {
         cout<<"An error has occurred while reading the input sequence.";
